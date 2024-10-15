@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+   <style>
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-image: url(https://thumbs.dreamstime.com/b/open-book-hardback-books-wooden-table-education-background-back-to-school-copy-space-text-75367702.jpg) ;
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
 
+
+.container {
+    height: 350px;
+    width: 400px;
+    background: transparent;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(3, 3, 3, 0.1);
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(1px);        
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+}
+
+
+h1 {
+    text-align: center;
+    color: #080808;
+}
+
+
+
+
+.input-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: rgb(14, 13, 13);
+}
+
+
+
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: rgb(8, 8, 8);
+}
+
+
+
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+   
+    color: rgb(10, 10, 10);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+
+
+button:hover {
+    background-color: #fefffe;
+}
+
+
+
+
+.result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    color: rgb(34, 33, 33);
+}
+   </style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form id="bmi-form">
+            <div class="form-group">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" required>
+            </div>
+            <button type="submit">Calculate BMI</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>document.getElementById('bmi-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+   
+    let height = parseFloat(document.getElementById('height').value);
+    let weight = parseFloat(document.getElementById('weight').value);
+   
+    if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+        document.getElementById('result').textContent = 'Please enter valid height and weight.';
+        return;
+    }
+   
+    let bmi = weight / ((height / 100) ** 2);
+    bmi = bmi.toFixed(2);
+   
+    let resultText = `Your BMI is ${bmi}. `;
+   
+    if (bmi < 18.5) {
+        resultText += 'You are underweight.';
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        resultText += 'You have a normal weight.';
+    } else if (bmi >= 25 && bmi < 29.9) {
+        resultText += 'You are overweight.';
+    } else {
+        resultText += 'You are obese.';
+    }
+   
+    document.getElementById('result').textContent = resultText;
+});
+</script>
+</body>
+</html>
